@@ -23,5 +23,4 @@ public abstract class SituacaoOrcamento {
 		throw new DomainException("Orcamento não pode ser finalizado");
 	}
 
-
 }
