@@ -3,6 +3,8 @@ package br.com.alura.loja.pedido;
 import java.time.LocalDateTime;
 
 import br.com.alura.loja.orcamento.Orcamento;
+import br.com.alura.loja.pedido.acao.EnviarEmailPedido;
+import br.com.alura.loja.pedido.acao.SalvarPedidoNoBancoDeDados;
 
 public class GeraPedidoHandler {
 	
@@ -12,8 +14,11 @@ public class GeraPedidoHandler {
 		
 		Pedido pedido = new Pedido(cliente, LocalDateTime.now(), orcamento);
 		
-		System.out.println("Salvar pedido no banco de dados");
-		System.out.println("Enviar email com a confirmação do pedido");
+		EnviarEmailPedido email = new EnviarEmailPedido();
+		SalvarPedidoNoBancoDeDados salvarNoBanco = new SalvarPedidoNoBancoDeDados();
+		
+		email.executar(pedido);
+		salvarNoBanco.executar(pedido);
 	}
 
 }
